@@ -7,7 +7,7 @@ namespace CodeKata
     {
         static void Main(string[] args)
         {
-            new Class1().Shout();
+            Console.WriteLine("Run Tests, not ")
         }
     }
 }
