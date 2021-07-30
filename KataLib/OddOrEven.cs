@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KataLib
 {
-    public class Kata
+    public partial class Kata
     {
         public static string OddOrEven(int[] array)
         =>
