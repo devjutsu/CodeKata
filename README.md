@@ -1,0 +1,2 @@
+# CodeKata
+Kata. Just kata.
