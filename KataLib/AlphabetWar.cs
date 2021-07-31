@@ -10,10 +10,7 @@ namespace KataLib
     {
         public static string AlphabetWar(string fight)
         =>
-            Message(fight
-                        .ToList()
-                        .Select(c => CountChar(c))
-                        .Sum());
+            Message(Score(fight));
 
         public static string Message(int score)
         =>
@@ -23,20 +20,11 @@ namespace KataLib
                     ? "Right side wins!"
                     : "Left side wins!";
 
-
-        public static int CountChar(char c)
+        public static int Score(string fight)
         =>
-            c switch
-            {
-                'w' => -4,
-                'p' => -3,
-                'b' => -2,
-                's' => -1,
-                'm' => 4,
-                'q' => 3,
-                'd' => 2,
-                'z' => 1,
-                _ => 0
-            };
+            fight.Sum(c =>
+                        ("zdqm").IndexOf(c) + 1
+                        - ("sbpw".IndexOf(c) + 1));
+
     }
 }
