@@ -8,69 +8,31 @@ namespace KataLib
 {
     public class RangeExtraction
     {
+        public int Value, Count;
+        public int NextValue => Value + Count;
+
+        public RangeExtraction(int value)
+        {
+            Value = value;
+            Count = 1;
+        }
+
+        public override string ToString()
+            => Count == 1 
+                ? $"{Value}" 
+                : Count == 2 
+                    ? $"{Value},{Value + 1}" 
+                    : $"{Value}-{NextValue - 1}";
+
         public static string Extract(int[] args)
-        =>
-            args.Length < 3
-            ? string.Join(",", args)
-            : StringifyRanges(Ranges(args));
-
-
-        public static List<(int start, int end)> Ranges(int[] args)
         {
-            var result = new List<(int start, int end)>();
-            // check if it's range or single number
-            for (int i = 0; i < args.Length; i++)
-            {
-                (int start, int end)? tmp = null;
-                int j = 3;
-                var subclusterToCheck = args.Skip(i).Take(j).ToArray();
-                var isCluster = IsValidCluster(subclusterToCheck);
+            var list = new List<RangeExtraction>();
 
-                // till the end of this range
-                while (isCluster && (i + j <= args.Length))
-                {
+            foreach (var n in args)
+                if (list.LastOrDefault()?.NextValue == n) list.Last().Count++;
+                else list.Add(new RangeExtraction(n));
 
-                    subclusterToCheck = args.Skip(i).Take(j).ToArray();
-                    isCluster = IsValidCluster(subclusterToCheck);
-
-                    if (isCluster)
-                    {
-                        tmp = (args[i], args[i + j - 1]);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                    j++;
-                }
-
-                // save single number or range
-                if (tmp == null)
-                    result.Add((args[i], args[i]));
-                else
-                {
-                    result.Add(tmp.Value);
-                    i += tmp.Value.end - tmp.Value.start;
-                }
-
-            }
-            return result;
+            return string.Join(",", list);
         }
-
-        public static bool IsValidCluster(int[] args)
-        =>
-            (args.Max() - args.Min() == args.Length - 1)
-            && args.Length > 2;
-
-        public static string StringifyRanges(List<(int start, int end)> ranges)
-        {
-            return string.Join(",", ranges.Select(o => StringifyTuple(o.start, o.end)));
-        }
-
-        public static string StringifyTuple(int start, int end)
-        =>
-            start == end
-            ? $"{start}"
-            : $"{start}-{end}";
     }
 }
