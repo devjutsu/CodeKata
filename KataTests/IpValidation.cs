@@ -9,10 +9,10 @@ using NUnit.Framework;
 namespace KataTests
 {
     [TestFixture]
-    public class SolutionTest
+    public partial class SolutionTest
     {
         [Test]
-        public void TestCases()
+        public static void TestCases()
         {
             Assert.AreEqual(false, Kata.is_valid_IP("12.34.56.00"));
             Assert.AreEqual(true, Kata.is_valid_IP("0.0.0.0"));
