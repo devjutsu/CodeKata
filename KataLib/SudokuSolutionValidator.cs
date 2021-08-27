@@ -7,57 +7,57 @@ namespace KataLib
     public static class SudokuSolutionValidator
     {
         public static bool ValidateSolution(int[][] board)
-        {
-            if (board.HasZero())
-                return false;
+            => !board.ContainsZero()
+                && board.All(x => x.CheckLine())
+                && board.CheckQuadrants();
 
-            //if (!board.All(x => x.CheckLine()))
-            //    return false;
+        public static bool ContainsZero(this int[][] board)
+            => board.Select(x => string.Concat(x))
+                        .Any(x => x.Contains('0'));
 
-            for (var i = 0; i < 3; i++)
-            {
-                for (var j = 0; j < 3; j++)
-                {
-                    var split = board.Skip(i*3).Take(3).Select(o => o.Skip(j*3).Take(3).ToArray()).ToArray();
-                    if (!split.CheckQuadrant())
-                        return false;
-                }
-            }
-
-            return true;
-        }
-
-        public static bool HasZero(this int[][] board)
-        {
-            var result =  (board.Select(x => string.Concat(x)).Any(x => x.Contains('0')));
-            return result;
-        }
-
-        public static bool CheckLine(this int[] line)
+        public static bool CheckLine(this IEnumerable<int> line)
             => line.Sum() == 45
                 && line.GroupBy(n => n)
                         .All(x => x.Count() == 1);
 
+        public static bool CheckQuadrants(this int[][] board, int i = 0)
+            => i >= 3 || board.CheckSlice(i) && board.CheckQuadrants(i + 1);
 
-        public static bool CheckQuadrant(this int[][] board)
-        {
-            var test = string.Concat(board.Select(x => string.Concat(x))).ToArray();
+        public static bool CheckSlice(this int[][] board, int i, int j = 0)
+            => j >= 3 || board.Check3x3(i, j) && board.CheckSlice(i, j + 1);
 
-            if (!test.Select(o => int.Parse(o.ToString())).ToArray().CheckLine())
-            {
-                return false;
-            }
+        public static bool Check3x3(this int[][] board, int i, int j)
+            => board.Skip(i * 3)
+                        .Take(3)
+                        .Select(o => o.Skip(j * 3)
+                                        .Take(3))
+                        .SelectMany(x => x)
+                        .CheckLine();
 
-            return true;
-        }
-
-
-        //public static List<List<int>> SplitBoard(int[][] board, int i = 0, int j = 0)
+        //public static bool ValidateSolution(int[][] board)
         //{
-        //    var result = new List<List<int>>();
-
-
-        //    return result;
+        //    return Enumerable
+        //      .Range(0, 9)
+        //      .SelectMany(i => new[]
+        //      {
+        //  board[i].Sum(),
+        //  board.Sum(b => b[i]),
+        //  board.Skip(3 * (i / 3)).Take(3).SelectMany(r => r.Skip(3 * (i % 3)).Take(3)).Sum()
+        //      })
+        //      .All(i => i == 45);
         //}
+
+        //public static bool ValidateSolution(int[][] board) => Enumerable
+        //    .Range(0, 9)
+        //    .All(n =>
+        //    {
+        //        var y = 3 * (n / 3);
+        //        var x = 3 * (n % 3);
+        //        var hash = Enumerable
+        //          .Range(y, 3)  // 3*3 matrix
+        //          .SelectMany(i => board[i].Skip(x).Take(3))
+        //          .ToHashSet();
+        //        return hash.Count() == 9 && !hash.Contains(0);
+        //    });
     }
 }
