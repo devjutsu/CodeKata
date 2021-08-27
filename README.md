@@ -1,7 +1,7 @@
 # CodeKata 
 
 
-![codewars](https://www.codewars.com/users/devjutsu/badges/micro "CodeWars")
+![https://www.codewars.com/users/devjutsu](https://www.codewars.com/users/devjutsu/badges/micro "CodeWars")
 
 Kata. Just kata.
 
