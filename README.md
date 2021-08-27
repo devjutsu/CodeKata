@@ -1,5 +1,5 @@
-# CodeKata
+# CodeKata ![codeward](https://www.codewars.com/users/devjutsu/badges/micro)
 Kata. Just kata.
-![codeward](https://www.codewars.com/users/devjutsu/badges/micro)
+
 
 Trying to go functional here
