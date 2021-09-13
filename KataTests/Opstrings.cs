@@ -27,6 +27,22 @@ namespace KataTests
             testing(Opstrings.Oper(Opstrings.HorMirror, "lVHt\nJVhv\nCSbg\nyeCt"), "yeCt\nCSbg\nJVhv\nlVHt");
             testing(Opstrings.Oper(Opstrings.HorMirror, "njMK\ndbrZ\nLPKo\ncEYz"), "cEYz\nLPKo\ndbrZ\nnjMK");
         }
+
+        [Test]
+        public static void test3()
+        {
+            Console.WriteLine("Fixed Tests Rot90Clock");
+            testing(Opstrings.Oper(Opstrings.Rot90Clock, "rgavce\nvGcEKl\ndChZVW\nxNWgXR\niJBYDO\nSdmEKb"),
+                    "Sixdvr\ndJNCGg\nmBWhca\nEYgZEv\nKDXVKc\nbORWle");
+
+            Console.WriteLine("Fixed Tests Diag1Sym");
+            testing(Opstrings.Oper(Opstrings.Diag1Sym, "wuUyPC\neNHWxw\nehifmi\ntBTlFI\nvWNpdv\nIFkGjZ"),
+                    "weetvI\nuNhBWF\nUHiTNk\nyWflpG\nPxmFdj\nCwiIvZ");
+
+            Console.WriteLine("Fixed Tests SelfieAndDiag1");
+            testing(Opstrings.Oper(Opstrings.SelfieAndDiag1, "NJVGhr\nMObsvw\ntPhCtl\nsoEnhi\nrtQRLK\nzjliWg"),
+                    "NJVGhr|NMtsrz\nMObsvw|JOPotj\ntPhCtl|VbhEQl\nsoEnhi|GsCnRi\nrtQRLK|hvthLW\nzjliWg|rwliKg");
+        }
     }
 
     public class Opstrings1Test
@@ -36,7 +52,7 @@ namespace KataTests
             Assert.AreEqual(expected, actual);
         }
         [Test]
-        public static void test1()
+        public static void test2()
         {
             Console.WriteLine("Fixed Tests Rot");
             testing(Opstrings1.Oper(Opstrings1.Rot, "fijuoo\nCqYVct\nDrPmMJ\nerfpBA\nkWjFUG\nCVUfyL"),
