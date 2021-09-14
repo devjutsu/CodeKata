@@ -30,6 +30,15 @@ namespace KataLib
         public static string Oper(Func<string[], string[]> op, string src)
             => string.Join("\n", op(src.Split("\n")));
 
+        public static string[] Rot90Counter(this string[] src)
+            => src.Select((o, i) => string.Join("", src.Select(z => z[z.Length - 1 - i]))).ToArray();
+
+        public static string[] Diag2Sym(this string[] src)
+            => src.Select((o, i) => string.Join("", src.Select(z => z[z.Length - 1 - i]).Reverse()))
+                            .ToArray();
+
+        public static string[] SelfieDiag2Counterclock(this string[] src)
+            => src.Select((o, i) => o + "|" + src.Diag2Sym()[i] + "|" + src.Rot90Counter()[i]).ToArray();
     }
 
     public static class Opstrings1
