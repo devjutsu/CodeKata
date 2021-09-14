@@ -43,6 +43,22 @@ namespace KataTests
             testing(Opstrings.Oper(Opstrings.SelfieAndDiag1, "NJVGhr\nMObsvw\ntPhCtl\nsoEnhi\nrtQRLK\nzjliWg"),
                     "NJVGhr|NMtsrz\nMObsvw|JOPotj\ntPhCtl|VbhEQl\nsoEnhi|GsCnRi\nrtQRLK|hvthLW\nzjliWg|rwliKg");
         }
+
+        [Test]
+        public static void test4()
+        {
+            Console.WriteLine("Fixed Tests Rot90Counter");
+            testing(Opstrings.Oper(Opstrings.Rot90Counter, "EcGcXJ\naaygcA\nNgIshN\nyOrCZE\neBEqpm\nNkxCgw"),
+                    "JANEmw\nXchZpg\ncgsCqC\nGyIrEx\ncagOBk\nEaNyeN");
+
+            Console.WriteLine("Fixed Tests Diag2Sym");
+            testing(Opstrings.Oper(Opstrings.Diag2Sym, "LmvLyg\nDKELBm\nylJhui\nXRXqHD\nzlisCT\nhPqxYb"),
+                    "bTDimg\nYCHuBy\nxsqhLL\nqiXJEv\nPlRlKm\nhzXyDL");
+
+            Console.WriteLine("Fixed Tests SelfieDiag2Counterclock");
+            testing(Opstrings.Oper(Opstrings.SelfieDiag2Counterclock, "NJVGhr\nMObsvw\ntPhCtl\nsoEnhi\nrtQRLK\nzjliWg"),
+                    "NJVGhr|gKilwr|rwliKg\nMObsvw|WLhtvh|hvthLW\ntPhCtl|iRnCsG|GsCnRi\nsoEnhi|lQEhbV|VbhEQl\nrtQRLK|jtoPOJ|JOPotj\nzjliWg|zrstMN|NMtsrz");
+        }
     }
 
     public class Opstrings1Test
