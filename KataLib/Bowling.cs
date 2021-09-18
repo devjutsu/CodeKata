@@ -23,18 +23,12 @@ namespace KataLib
         };
 
         public string BowlingPins(int[] arr)
-        {
-            var field = new string(' ', 28).ToList();
-            for (var i = 1; i <= field.Count; i++)
-            {
-                if (dc.ContainsKey(i))
-                    field[i - 1] = arr.Contains(dc[i]) ? ' ' : 'I';
-                else
-                    field[i - 1] = ' ';
-            }
+            => Stringify(new string(' ', 28).Select((o, i) => Sym(o, i + 1, arr)).ToList());
 
-            return Stringify(field);
-        }
+        public char Sym(char c, int i, int[] arr)
+            => dc.ContainsKey(i)
+                    ? arr.Contains(dc[i]) ? ' ' : 'I'
+                    : ' ';
 
         public static string Stringify(List<char> field)
             => string.Join("", field.Take(7)) + "\n"
@@ -42,4 +36,10 @@ namespace KataLib
                         + string.Join("", field.Skip(14).Take(7)) + "\n"
                         + string.Join("", field.Skip(21).Take(7));
     }
+
+    //public class Bowling
+    //{
+    //    public string BowlingPins(int[] arr)
+    //      => string.Format("{6} {7} {8} {9}\n {3} {4} {5} \n  {1} {2}  \n   {0}   ", Enumerable.Range(1, 10).Select(x => arr.Contains(x) ? " " : "I").ToArray());
+    //}
 }
