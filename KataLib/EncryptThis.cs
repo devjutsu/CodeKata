@@ -34,5 +34,20 @@ namespace KataLib
         //                    + word.Last()
         //                    + word.Substring(2, word.Length - 3)
         //                    + word[1];
+
+
+        //public static string EncryptThis(string input) => input
+        //  .Split(" ")
+        //  .Select(Encrypt)
+        //  .Aggregate((r, w) => $"{r} {w}");
+
+        //private static string Encrypt(string w) => w.Length switch
+        //{
+        //    0 => string.Empty,
+        //    1 => $"{(int)w[0]}",
+        //    2 => $"{(int)w[0]}{w[1]}",
+        //    _ => $"{(int)w[0]}{w[^1]}{w[2..^1]}{w[1]}"
+        //};
     }
+
 }
