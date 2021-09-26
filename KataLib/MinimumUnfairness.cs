@@ -9,14 +9,16 @@ namespace KataLib
     public static class MinimumUnfairness
     {
         public static int MinUnfairness(int[] arr, int k)
-        {
-            if (arr.Length <= 2 || k == 0) return 0;
-            arr = arr.OrderBy(i => i).ToArray();
+            => arr.Length <= 2 || k == 0
+                    ? 0
+                    : arr.OrderBy(o => o).ToArray().Res(k);
 
-            return Enumerable.Range(0, arr.Length - k + 1)
+        public static int Res(this int[] arr, int k)
+            => Enumerable.Range(0, arr.Length - k + 1)
                     .Select(i => arr[i + k - 1] - arr[i])
                     .Min(i => i);
-        }
+
+
 
         //public static int MinUnfairness(int[] arr, int k)
         //{
