@@ -11,5 +11,7 @@ namespace KataLib
     {
         public static string SevenAteNine(string str)
             => str.Replace("797", "77").Replace("797", "77");
+
+        // Regex.Replace(str, @"(?<=7)9(?=7)", "");
     }
 }
