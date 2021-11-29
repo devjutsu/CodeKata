@@ -10,5 +10,7 @@ namespace KataLib
     {
         public static bool PowerOfTwo(int n)
             => Convert.ToString(n, 2).Count(o => o == '1') == 1;
+
+        // public static bool PowerOfTwo(int n) => new BigInteger(n).IsPowerOfTwo;
     }
 }
