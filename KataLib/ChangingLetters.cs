@@ -9,8 +9,6 @@ namespace KataLib
     public class ChangingLetters
     {
         public static string Swap(string s)
-        {
-            return string.Concat(s.Select(x => "aouie".Contains(x) ? x.ToString().ToUpper() : x.ToString() ));
-        }
+        => string.Concat(s.Select(x => "aouie".Contains(x) ? x.ToString().ToUpper() : x.ToString() ));
     }
 }
