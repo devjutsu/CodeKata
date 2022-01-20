@@ -8,7 +8,7 @@ namespace KataLib
 {
     public class SumTheTree
     {
-        public static int SumTree(Node root)
+        public static int SumTree(TreeNode root)
             => root == null ? 0 : root.Value + SumTree(root.Left) + SumTree(root.Right);
     }
 
@@ -17,13 +17,13 @@ namespace KataLib
     //            + (root.Left != null ? SumTree(root.Left) : 0)
     //            + (root.Right != null ? SumTree(root.Right) : 0);
 
-    public class Node
+    public class TreeNode
     {
         public int Value;
-        public Node Left;
-        public Node Right;
+        public TreeNode Left;
+        public TreeNode Right;
 
-        public Node(int value, Node left = null, Node right = null)
+        public TreeNode(int value, TreeNode left = null, TreeNode right = null)
         {
             Value = value;
             Left = left;
