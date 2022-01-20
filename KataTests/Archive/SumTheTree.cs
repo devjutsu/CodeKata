@@ -14,13 +14,13 @@ namespace KataTests
         {
             get
             {
-                yield return new TestCaseData(new Node(10, new Node(1), new Node(2))).Returns(13).SetDescription("Simple Test");
-                yield return new TestCaseData(new Node(11, new Node(0), new Node(0, null, new Node(1)))).Returns(12).SetDescription("Handles unbalanced trees");
+                yield return new TestCaseData(new TreeNode(10, new TreeNode(1), new TreeNode(2))).Returns(13).SetDescription("Simple Test");
+                yield return new TestCaseData(new TreeNode(11, new TreeNode(0), new TreeNode(0, null, new TreeNode(1)))).Returns(12).SetDescription("Handles unbalanced trees");
             }
         }
 
         [Test, TestCaseSource("testCases")]
-        public int Test(Node root) =>
+        public int Test(TreeNode root) =>
           SumTheTree.SumTree(root);
     }
 }
