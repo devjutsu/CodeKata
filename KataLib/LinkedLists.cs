@@ -17,11 +17,18 @@ namespace KataLib
             Data = data;
             Next = next;
         }
+
+        public static Node Push(Node head, int data)
+            =>  new Node(data, head);
+
+        public static Node BuildOneTwoThree()
+            => new Node(1, new Node(2, new Node(3)));
     }
 
-    public static class LinkedListToString
+    public static class LinkedLists
     {
         public static string Stringify(Node list)
             => list == null ? "null" : $"{list.Data} -> {Stringify(list.Next)}";
     }
+
 }
