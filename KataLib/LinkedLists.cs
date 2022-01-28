@@ -31,6 +31,34 @@ namespace KataLib
             => head == null ? 0
                     : func(head.Data) == true ? 1 + Count(head.Next, func)
                     : Count(head.Next, func);
+
+        public static Node InsertNth(Node head, int index, int data)
+        {
+            if (index == 0)
+                return new Node(data, head);
+            else if (index < 0) throw new ArgumentOutOfRangeException();
+
+            var item = head;
+            for (var i = 0; i < index - 1; i++)
+            {
+                if (item.Next == null)
+                    throw new ArgumentOutOfRangeException();
+                item = item.Next;
+            }
+            item.Next = new Node(data, item.Next);
+            return head;
+        }
+
+        // public static Node InsertNth(Node head, int index, int data)
+        // {
+        //     if (index < 0) { throw new ArgumentOutOfRangeException("Second argument must not be negative."); }
+        //     if (index > 0 && head == null) { throw new ArgumentOutOfRangeException("Second argument is out of bounds of the linked list."); }
+
+        //     if (index == 0) { return new Node(data, head); }
+        //     head.Next = InsertNth(head.Next, --index, data);
+
+        //     return head;
+        // }
     }
 
     public static class LinkedLists
