@@ -113,5 +113,18 @@ namespace KataTests
             Assert.Throws<ArgumentOutOfRangeException>(() => Node.InsertNth(Node.BuildOneTwoThree(), 4, 23), "Invalid index value should throw ArugmentException");
             Assert.Throws<ArgumentOutOfRangeException>(() => Node.InsertNth(Node.BuildOneTwoThree(), -4, 23), "Invalid index value should throw ArugmentException");
         }
+
+        [Test, Description("tests for getting the Nth node in a linked list.")]
+        public void Test()
+        {
+            Node list = Node.BuildOneTwoThree();
+
+            Assert.AreEqual(1, Node.GetNth(list, 0).Data, "First node should be located at index 0.");
+            Assert.AreEqual(2, Node.GetNth(list, 1).Data, "Second node should be located at index 1.");
+            Assert.AreEqual(3, Node.GetNth(list, 2).Data, "Third node should be located at index 2.");
+            Assert.Throws<ArgumentException>(() => Node.GetNth(list, 3), "Invalid index value should throw an exception.");
+            Assert.Throws<ArgumentException>(() => Node.GetNth(list, 100), "Invalid index value should throw an exception.");
+            Assert.Throws<ArgumentException>(() => Node.GetNth(null, 0), "Null linked list should throw an exception.");
+        }
     }
 }
