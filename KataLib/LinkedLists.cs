@@ -32,6 +32,11 @@ namespace KataLib
                     : func(head.Data) == true ? 1 + Count(head.Next, func)
                     : Count(head.Next, func);
 
+        public static Node GetNth(Node node, int index)
+            => node == null ? throw new ArgumentException() 
+                        : index == 0 ? node 
+                            : GetNth(node.Next, index - 1);
+
         public static Node InsertNth(Node head, int index, int data)
         {
             if (index == 0)
